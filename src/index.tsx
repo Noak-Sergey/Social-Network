@@ -18,8 +18,8 @@ let rerenderEntireTree = () => {
 rerenderEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state) });
+    //let state = store.getState();
+    rerenderEntireTree() });
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
