@@ -94,7 +94,7 @@ export type MessagesType = {
     message: string
 }
 
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
@@ -116,7 +116,7 @@ export type DialogPageType = {
     newMessageBody:string
 }
 
-type SidebarType = {}
+export type SidebarType = {}
 
 export type RootStateType = {
     profilePage: ProfilePageType

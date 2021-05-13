@@ -10,4 +10,6 @@ let reducers = combineReducers({
     }
 );
 
+export type ReducersType = typeof reducers
+
 export let store = createStore(reducers);
