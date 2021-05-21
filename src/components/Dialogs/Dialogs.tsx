@@ -6,7 +6,6 @@ import {DialogPageType} from "../../Redux/store";
 
 type DialogsType = {
     dialogsPage:DialogPageType
-    //dispatch: (action:ActionsTypes) => void
     updateNewMessageBody:(body:string) => void
     sendMessage:() => void
 }

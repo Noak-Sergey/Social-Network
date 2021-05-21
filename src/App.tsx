@@ -9,8 +9,8 @@ import {StoreType} from "./Redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type AppType = {
-    store: StoreType
-    dispatch: (action: ActionsTypes) => void
+    //store: StoreType
+    //dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -22,9 +22,9 @@ const App: React.FC<AppType> = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer store={props.store} />}/>
+                           render={() => <DialogsContainer />}/>
                     <Route path='/profile'
-                           render={() => <Profile store={props.store} />}/>
+                           render={() => <Profile />}/>
                 </div>
             </div>
         </BrowserRouter>

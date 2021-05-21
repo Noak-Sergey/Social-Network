@@ -6,8 +6,6 @@ export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
-    //addPost: () => void
-    //updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsTypes) => void
 }
