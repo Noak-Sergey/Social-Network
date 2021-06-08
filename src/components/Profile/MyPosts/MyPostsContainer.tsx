@@ -1,37 +1,34 @@
 import React from "react";
 import {addPostActionCreator, onPostChangeActionCreator} from "../../../Redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {StoreType} from "../../../Redux/redux-store";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
+import {ActionsTypes, RootStateType} from "../../../Redux/store";
 
-
-type MyPostsContainerType = {
-    //store: StoreType
+let mapStateToProps = (state:RootStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
 }
 
+type mapDispatchToPropsType = {
+    updateNewPostText:(value:string) => void
+    addPost:(value:string) => void
+}
 
-const MyPostsContainer: React.FC<MyPostsContainerType> = () => {
-
-    return <StoreContext.Consumer>
-        {
-            (store) => {
-                let state = store.getState();
-
-                let addPost = (value: string) => {
-                    store.dispatch(addPostActionCreator(value));
-                }
-
-                let onPostChange = (value: string) => {
-                    let action = onPostChangeActionCreator(value)
-                    store.dispatch(action);
-                }
-
-                return <MyPosts updateNewPostText={onPostChange}
-                                addPost={addPost}
-                                posts={state.profilePage.posts}
-                                newPostText={state.profilePage.newPostText}/>
-            }
+let mapDispatchToProps = (dispatch:(action: ActionsTypes) => void):mapDispatchToPropsType => {
+    return {
+        updateNewPostText:(value:string) => {
+            let action = onPostChangeActionCreator(value)
+            dispatch(action);
+        },
+        addPost: (value: string) => {
+            dispatch(addPostActionCreator(value));
         }
-    </StoreContext.Consumer>
+    }
 }
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
 export default MyPostsContainer;
+
