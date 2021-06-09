@@ -121,5 +121,3 @@ export type RootStateType = {
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-
-//window.store = store
