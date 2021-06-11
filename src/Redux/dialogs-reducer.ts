@@ -13,7 +13,7 @@ let initialState = {
         {id: 5, message: 'Yo'},
     ],
 
-    newMessageBody: 'Write here',
+    newMessageBody: '',
 
     dialogs: [
         {id: 1, name: 'Fedor'},
@@ -26,20 +26,21 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsTypes) => {
+
     switch (action.type) {
-        case NEW_MESSAGE_BODY: {
-            let stateCopy = {...state}
-            stateCopy.newMessageBody = action.body;
-            return stateCopy;
-        }
-        case SEND_MESSAGE: {
-            let stateCopy = {...state};
-            let body = stateCopy.newMessageBody;
-            stateCopy.newMessageBody = '';
-            stateCopy.messages = [...state.messages]
-            stateCopy.messages.push({id: 6, message: body});
-            return stateCopy;
-        }
+        case NEW_MESSAGE_BODY:
+            return {
+                ...state,
+            newMessageBody: action.body
+            };
+
+        case SEND_MESSAGE:
+            let body = state.newMessageBody;
+            return {
+                ...state,
+                newMessageBody: '',
+                messages:[...state.messages,{id: 6, message: body}]
+            };
         default:
             return state;
     }
