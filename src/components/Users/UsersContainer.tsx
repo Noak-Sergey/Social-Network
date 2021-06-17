@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import {ActionsTypes, followAC, setUsersAC, unfollowAC, usersType} from "../../Redux/users-reducer";
+import {followAC, setUsersAC, unfollowAC, userType} from "../../Redux/users-reducer";
 
 
 let mapStateToProps = (state:any) => {
@@ -13,7 +13,7 @@ let mapStateToProps = (state:any) => {
 type mapDispatchToPropsType = {
     follow:(userId:number)=>void
     unfollow:(userId:number)=>void
-    setUsers:(users:usersType)=>void
+    setUsers:(users:userType)=>void
 }
 
 let mapDispatchToProps = (dispatch:(action:any)=>void ) => {
@@ -24,7 +24,7 @@ let mapDispatchToProps = (dispatch:(action:any)=>void ) => {
         unfollow: (userId:number) => {
             dispatch(unfollowAC(userId));
         },
-        setUsers: (users:usersType) => {
+        setUsers: (users:userType) => {
             dispatch(setUsersAC(users));
         },
     }

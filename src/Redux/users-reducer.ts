@@ -7,16 +7,17 @@ let initialState = {
         users: []
     };
 
-export type usersType = {
+export type userType = {
     id: number
     photoUrl: string
     followed: boolean
-    fullName: string
+    photos:{small:string, large:string}
+    name: string
     status:string
     location:{city:string, country:string }
 }
 export type usersPageType = {
-    users: Array<usersType>
+    users: Array<userType>
     follow ?: any
     unfollow ?: any
     setUsers ?: any
@@ -32,7 +33,7 @@ export type unfollowACType = {
 }
 export type setUsersACType = {
     type:'SET_USERS'
-    users: Array<usersType>
+    users: Array<userType>
 }
 export type ActionsTypes = followACType | unfollowACType | setUsersACType
 
@@ -78,7 +79,7 @@ export const unfollowAC = (userId:number) => {
         userId
     }
 }
-export const setUsersAC = (users:usersType) => {
+export const setUsersAC = (users:userType) => {
     return {
         type: SET_USERS,
         users
