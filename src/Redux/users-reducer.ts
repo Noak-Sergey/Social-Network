@@ -1,43 +1,16 @@
+import {FollowACType, SetUsersACType, UnfollowACType, UsersStateType, UserType} from "./storeType";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
+export const FOLLOW = 'FOLLOW';
+export const UNFOLLOW = 'UNFOLLOW';
+export const SET_USERS = 'SET_USERS';
 
 let initialState = {
         users: []
     };
 
-export type userType = {
-    id: number
-    photoUrl: string
-    followed: boolean
-    photos:{small:string, large:string}
-    name: string
-    status:string
-    location:{city:string, country:string }
-}
-export type usersPageType = {
-    users: Array<userType>
-    follow ?: any
-    unfollow ?: any
-    setUsers ?: any
-}
+export type ActionsTypes = FollowACType | UnfollowACType | SetUsersACType
 
-export type followACType = {
-    type:'FOLLOW'
-    userId: number
-}
-export type unfollowACType = {
-    type:'UNFOLLOW'
-    userId: number
-}
-export type setUsersACType = {
-    type:'SET_USERS'
-    users: Array<userType>
-}
-export type ActionsTypes = followACType | unfollowACType | setUsersACType
-
-export const usersReducer = (state: usersPageType = initialState, action:ActionsTypes) => {
+export const usersReducer = (state: UsersStateType = initialState, action:ActionsTypes) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -67,22 +40,21 @@ export const usersReducer = (state: usersPageType = initialState, action:Actions
     }
 }
 
-export const followAC = (userId:number) => {
+export const followAC = (userId:number): FollowACType => {
     return {
         type: FOLLOW,
         userId
         }
 }
-export const unfollowAC = (userId:number) => {
+export const unfollowAC = (userId:number): UnfollowACType => {
     return {
         type: UNFOLLOW,
         userId
     }
 }
-export const setUsersAC = (users:userType) => {
+export const setUsersAC = (users:UserType[]): SetUsersACType => {
     return {
         type: SET_USERS,
         users
-
     }
 }

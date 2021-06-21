@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogPageType, NewMessageBody, SendMessage} from "./store";
+import {ActionsTypes, DialogPageType, NewMessageBody, SendMessage} from "./storeType";
 
 const NEW_MESSAGE_BODY = 'NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
