@@ -1,4 +1,12 @@
-import {FOLLOW, SET_USERS, UNFOLLOW} from "./users-reducer";
+import {
+    FOLLOW,
+    SET_CURRENT_PAGE,
+    SET_TOTAL_USERS_COUNT,
+    SET_USERS,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    UNFOLLOW
+} from "./users-reducer";
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -54,6 +62,9 @@ export type UserType = {
 
 export type UsersStateType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount:number
+    currentPage:number
 }
 
 export type FollowACType = {
@@ -67,4 +78,12 @@ export type UnfollowACType = {
 export type SetUsersACType = {
     type: typeof SET_USERS
     users: Array<UserType>
+}
+export type SetCurrentPageACType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage:number
+}
+export type setTotalUsersCountACType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    count:number
 }

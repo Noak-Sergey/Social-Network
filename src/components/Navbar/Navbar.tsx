@@ -15,6 +15,9 @@ const Navbar: React.FC<NavbarType> = () => {
             <NavLink to = '/dialogs' activeClassName={c.active}>Messages</NavLink>
         </div>
         <div className={c.item}>
+            <NavLink to = '/users' activeClassName={c.active}>Users</NavLink>
+        </div>
+        <div className={c.item}>
             <NavLink to = '/new' activeClassName={c.active}>News</NavLink>
         </div>
         <div className={c.item}>
@@ -23,9 +26,7 @@ const Navbar: React.FC<NavbarType> = () => {
         <div className={c.item}>
             <NavLink to = '/settings' activeClassName={c.active}>Settings</NavLink>
         </div>
-        <div className={c.item}>
-            <NavLink to = '/users' activeClassName={c.active}>Users</NavLink>
-        </div>
+
     </nav>
 }
 
