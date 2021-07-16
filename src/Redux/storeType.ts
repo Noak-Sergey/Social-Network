@@ -3,9 +3,8 @@ import {
     SET_CURRENT_PAGE,
     SET_TOTAL_USERS_COUNT,
     SET_USERS,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    UNFOLLOW
+    UNFOLLOW,
+    TOGGLE_IS_FETCHING
 } from "./users-reducer";
 
 export type AddPostActionType = {
@@ -65,6 +64,7 @@ export type UsersStateType = {
     pageSize: number
     totalUsersCount:number
     currentPage:number
+    isFetching: boolean
 }
 
 export type FollowACType = {
@@ -86,4 +86,8 @@ export type SetCurrentPageACType = {
 export type setTotalUsersCountACType = {
     type: typeof SET_TOTAL_USERS_COUNT
     count:number
+}
+export type toggleIsFetchingACType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching:boolean
 }
