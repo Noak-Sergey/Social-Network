@@ -2,31 +2,32 @@ import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UserType} from "../../Redux/storeType";
+import { NavLink } from "react-router-dom";
 
 type UsersProps = {
     users: Array<UserType>
     follow: (id: number) => void
-    unfollow: (userId:number) => void
+    unfollow: (userId: number) => void
     pageSize: number
     totalUsersCount: number
-    currentPage:number
-    onPageChanged:(p:number) => void
+    currentPage: number
+    onPageChanged: (p: number) => void
 
 }
 
-export let Users = (props:UsersProps) => {
+export let Users = (props: UsersProps) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
+    let pages: number[] = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
 
-    return <div >
+    return <div>
         <div>
             {pages.map(p => {
-                // @ts-ignore
-                return <span className={props.currentPage === p && styles.selectedPage}
+
+                return <span className={props.currentPage === p ? styles.selectedPage : ""}
                              onClick={(e) => {
                                  props.onPageChanged(p)
                              }}> {p} </span>
@@ -37,7 +38,9 @@ export let Users = (props:UsersProps) => {
             props.users.map(u => <div key={u.id}>
         <span>
             <div>
+                <NavLink to={'/profile/' + u.id}>
                 <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
+                </NavLink>
     </div>
     <div>
     {u.followed

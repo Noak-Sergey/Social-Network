@@ -6,15 +6,14 @@ import {
     UNFOLLOW,
     TOGGLE_IS_FETCHING
 } from "./users-reducer";
+import {AddPostActionType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-    newPostText: string
-}
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBody | SendMessage |
+    FollowACType | UnfollowACType | SetUsersACType | setUserProfileType
+
+
+
 export type NewMessageBody = {
     type: 'NEW-MESSAGE-BODY'
     body: string
@@ -22,8 +21,8 @@ export type NewMessageBody = {
 export type SendMessage = {
     type: 'SEND-MESSAGE'
 }
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBody | SendMessage |
-    FollowACType | UnfollowACType | SetUsersACType
+
+
 export type MessagesType = {
     id: number
     message: string
@@ -37,10 +36,8 @@ export type PostsType = {
     message: string
     likesCount: number
 }
-export type ProfilePageType = {
-    posts: Array<PostsType>
-    newPostText: string
-}
+
+
 export type DialogPageType = {
     messages: MessagesType[]
     dialogs: DialogsType[]
@@ -81,7 +78,7 @@ export type SetUsersACType = {
 }
 export type SetCurrentPageACType = {
     type: typeof SET_CURRENT_PAGE
-    currentPage:number
+    currentPage: number
 }
 export type setTotalUsersCountACType = {
     type: typeof SET_TOTAL_USERS_COUNT
