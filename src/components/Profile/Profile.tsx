@@ -5,8 +5,6 @@ import {ProfilePageType} from "../../Redux/profile-reducer";
 
 
 const Profile: React.FC<ProfilePageType> = (props) => {
-
-
     return <div>
         <ProfileInfo profile={props.profile}/>
         <MyPostsContainer />
