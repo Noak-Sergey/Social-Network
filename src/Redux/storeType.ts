@@ -80,11 +80,11 @@ export type SetCurrentPageACType = {
     type: typeof SET_CURRENT_PAGE
     currentPage: number
 }
-export type setTotalUsersCountACType = {
+export type SetTotalUsersCountACType = {
     type: typeof SET_TOTAL_USERS_COUNT
     count:number
 }
-export type toggleIsFetchingACType = {
+export type ToggleIsFetchingACType = {
     type: typeof TOGGLE_IS_FETCHING
     isFetching:boolean
 }

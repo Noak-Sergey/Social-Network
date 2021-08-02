@@ -7,14 +7,6 @@ import {ProfileType, setUserProfile} from "../../Redux/profile-reducer";
 import {PostsType} from "../../Redux/storeType";
 import {RouteComponentProps, withRouter } from "react-router-dom";
 
-
-// type ProfileAPIContainerComponentProps = {
-//     setUserProfile: (profile: ProfileType) => void
-//     profile: ProfileType | null
-//     newPostText:string
-//     posts: Array<PostsType>
-// }
-
 type MapStatePropsType = {
     profile: ProfileType | null
     newPostText: string

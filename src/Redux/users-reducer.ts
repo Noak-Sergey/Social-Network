@@ -1,12 +1,12 @@
 import {
     FollowACType,
     SetCurrentPageACType, 
-    setTotalUsersCountACType,
+    SetTotalUsersCountACType,
     SetUsersACType,
     UnfollowACType,
     UsersStateType,
     UserType, 
-    toggleIsFetchingACType,
+    ToggleIsFetchingACType,
 } from "./storeType";
 
 export const FOLLOW = 'FOLLOW';
@@ -24,7 +24,7 @@ let initialState = {
     isFetching: false,
 };
 
-export type ActionsTypes = FollowACType | UnfollowACType | SetUsersACType | SetCurrentPageACType | setTotalUsersCountACType | toggleIsFetchingACType
+export type ActionsTypes = FollowACType | UnfollowACType | SetUsersACType | SetCurrentPageACType | SetTotalUsersCountACType | ToggleIsFetchingACType
 
 export const usersReducer = (state: UsersStateType = initialState, action: ActionsTypes): UsersStateType => {
     switch (action.type) {
@@ -85,13 +85,13 @@ export const setCurrentPage = (currentPage: number): SetCurrentPageACType => {
         currentPage
     }
 }
-export const setTotalUsersCount = (totalCount: number): setTotalUsersCountACType => {
+export const setTotalUsersCount = (totalCount: number): SetTotalUsersCountACType => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         count: totalCount
     }
 }
-export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingACType => {
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingACType => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
