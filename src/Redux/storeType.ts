@@ -4,7 +4,8 @@ import {
     SET_TOTAL_USERS_COUNT,
     SET_USERS,
     UNFOLLOW,
-    TOGGLE_IS_FETCHING
+    TOGGLE_IS_FETCHING,
+    TOGGLE_IS_FOLLOWING_PROGRESS,
 } from "./users-reducer";
 import {AddPostActionType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
 
@@ -37,7 +38,6 @@ export type PostsType = {
     likesCount: number
 }
 
-
 export type DialogPageType = {
     messages: MessagesType[]
     dialogs: DialogsType[]
@@ -62,6 +62,7 @@ export type UsersStateType = {
     totalUsersCount:number
     currentPage:number
     isFetching: boolean
+    followingInProgress: number[]
 }
 
 export type FollowACType = {
@@ -87,4 +88,9 @@ export type SetTotalUsersCountACType = {
 export type ToggleIsFetchingACType = {
     type: typeof TOGGLE_IS_FETCHING
     isFetching:boolean
+}
+export type ToggleIsFollowingInProgressACType = {
+    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
+    followingInProgress: boolean
+    userId:number
 }
