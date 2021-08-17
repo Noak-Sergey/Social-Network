@@ -10,16 +10,16 @@ import {
 import {AddPostActionType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
 
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBody | SendMessage |
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBodyType | SendMessageType |
     FollowACType | UnfollowACType | SetUsersACType | setUserProfileType
 
 
 
-export type NewMessageBody = {
+export type NewMessageBodyType = {
     type: 'NEW-MESSAGE-BODY'
     body: string
 }
-export type SendMessage = {
+export type SendMessageType = {
     type: 'SEND-MESSAGE'
 }
 
