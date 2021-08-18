@@ -5,7 +5,7 @@ import {
     SET_USERS,
     UNFOLLOW,
     TOGGLE_IS_FETCHING,
-    TOGGLE_IS_FOLLOWING_PROGRESS, followSuccess, unfollowSuccess,
+    TOGGLE_IS_FOLLOWING_PROGRESS
 } from "./users-reducer";
 import {AddPostActionType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
 

@@ -124,7 +124,7 @@ export const toggleIsFollowingInProgress = (followingInProgress: boolean, userId
 
 
 export const getUsers = (currentPage: number,pageSize: number) => {
-    return (dispatch:Dispatch) => {
+    return (dispatch:Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFetching(true));
 
         usersAPI.getUsers(currentPage, pageSize).then(data => {
@@ -136,7 +136,7 @@ export const getUsers = (currentPage: number,pageSize: number) => {
 }
 
 export const follow = (userId:number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFollowingInProgress(true, userId))
         usersAPI.follow(userId)
             .then(response => {
@@ -149,7 +149,7 @@ export const follow = (userId:number) => {
 }
 
 export const unfollow = (userId:number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFollowingInProgress(true, userId))
         usersAPI.unfollow(userId)
             .then(response => {
