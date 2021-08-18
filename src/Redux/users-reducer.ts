@@ -1,14 +1,15 @@
 import {
-    FollowACType,
+    FollowSuccessACType,
     SetCurrentPageACType,
     SetTotalUsersCountACType,
     SetUsersACType,
-    UnfollowACType,
+    UnfollowSuccessACType,
     UsersStateType,
     UserType,
     ToggleIsFetchingACType, ToggleIsFollowingInProgressACType,
 } from "./storeType";
 import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
@@ -28,8 +29,8 @@ let initialState = {
 };
 
 export type ActionsTypes =
-    FollowACType
-    | UnfollowACType
+    FollowSuccessACType
+    | UnfollowSuccessACType
     | SetUsersACType
     | SetCurrentPageACType
     | SetTotalUsersCountACType
@@ -77,13 +78,13 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
     }
 }
 
-export const followSuccess = (userId: number): FollowACType => {
+export const followSuccess = (userId: number): FollowSuccessACType => {
     return {
         type: FOLLOW,
         userId
     }
 }
-export const unfollowSuccess = (userId: number): UnfollowACType => {
+export const unfollowSuccess = (userId: number): UnfollowSuccessACType => {
     return {
         type: UNFOLLOW,
         userId
@@ -123,7 +124,7 @@ export const toggleIsFollowingInProgress = (followingInProgress: boolean, userId
 
 
 export const getUsers = (currentPage: number,pageSize: number) => {
-    return (dispatch:any) => {
+    return (dispatch:Dispatch) => {
         dispatch(toggleIsFetching(true));
 
         usersAPI.getUsers(currentPage, pageSize).then(data => {

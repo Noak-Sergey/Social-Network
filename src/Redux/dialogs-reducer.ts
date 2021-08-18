@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogPageType, NewMessageBody, SendMessage} from "./storeType";
+import {ActionsTypes, DialogPageType, NewMessageBodyType, SendMessageType} from "./storeType";
 
 const NEW_MESSAGE_BODY = 'NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
@@ -46,7 +46,7 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
     }
 }
 
-export const updateNewMessageBodyCreator = (body: string): NewMessageBody => {
+export const updateNewMessageBodyCreator = (body: string): NewMessageBodyType => {
 
     return {
         type: NEW_MESSAGE_BODY,
@@ -54,7 +54,7 @@ export const updateNewMessageBodyCreator = (body: string): NewMessageBody => {
     }
 }
 
-export const sendMessageCreator = (): SendMessage => {
+export const sendMessageCreator = (): SendMessageType => {
 
     return {
         type: SEND_MESSAGE,

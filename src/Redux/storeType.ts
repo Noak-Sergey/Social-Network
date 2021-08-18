@@ -5,15 +5,13 @@ import {
     SET_USERS,
     UNFOLLOW,
     TOGGLE_IS_FETCHING,
-    TOGGLE_IS_FOLLOWING_PROGRESS,
+    TOGGLE_IS_FOLLOWING_PROGRESS, followSuccess, unfollowSuccess,
 } from "./users-reducer";
 import {AddPostActionType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
 
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBodyType | SendMessageType |
-    FollowACType | UnfollowACType | SetUsersACType | setUserProfileType
-
-
+    FollowSuccessACType | UnfollowSuccessACType | SetUsersACType | setUserProfileType
 
 export type NewMessageBodyType = {
     type: 'NEW-MESSAGE-BODY'
@@ -22,7 +20,6 @@ export type NewMessageBodyType = {
 export type SendMessageType = {
     type: 'SEND-MESSAGE'
 }
-
 
 export type MessagesType = {
     id: number
@@ -65,11 +62,11 @@ export type UsersStateType = {
     followingInProgress: number[]
 }
 
-export type FollowACType = {
+export type FollowSuccessACType = {
     type:  typeof FOLLOW
     userId: number
 }
-export type UnfollowACType = {
+export type UnfollowSuccessACType = {
     type:  typeof UNFOLLOW
     userId: number
 }
