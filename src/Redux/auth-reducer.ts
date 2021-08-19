@@ -14,7 +14,7 @@ export type AuthStateType = {
     userId: number | null
     email: string | null
     login: string | null
-    isAuth:boolean
+    isAuth: boolean
 }
 
 type ActionsTypes = SetAuthUserDataACType
