@@ -10,6 +10,7 @@ import {AppStateType} from "../../Redux/redux-store";
 import {UserType} from "../../Redux/storeType";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type UsersAPIComponentProps = {
     users: Array<UserType>
@@ -73,7 +74,9 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
+let withRedirect = withAuthRedirect(UsersAPIComponent)
+
 const UsersContainer = connect(mapStateToProps,
-    {followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })(UsersAPIComponent)
+    {followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })(withRedirect)
 
 export default UsersContainer;

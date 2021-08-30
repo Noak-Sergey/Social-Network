@@ -18,10 +18,6 @@ let reducers = combineReducers({
 type ReducersType = typeof reducers
 export type AppStateType = ReturnType<ReducersType>
 
-// export type StoreType = typeof store
-
 export let store = createStore(reducers, applyMiddleware(thunkMiddleware));
-
-// export type AppDispatchType = typeof store.dispatch
 
 export type RootStateType = ReturnType<ReducersType>
