@@ -37,6 +37,3 @@ export const DialogsContainer = compose<React.ComponentType>(connect(mapStateToP
     withAuthRedirect
 )(Dialogs)
 
-// export default compose(connect(mapStateToProps, mapDispatchToProps),
-//     withAuthRedirect
-// )(Dialogs)

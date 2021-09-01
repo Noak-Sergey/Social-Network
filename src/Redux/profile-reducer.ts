@@ -1,10 +1,12 @@
 import {ActionsTypes, PostsType} from "./storeType";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_STATUS = 'SET_STATUS';
+
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -18,10 +20,15 @@ export type setUserProfileType = {
     type: typeof SET_USER_PROFILE
     profile: ProfileType
 }
+export type setStatusType = {
+    type: typeof SET_STATUS
+    status:string
+}
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
     profile: ProfileType | null
+    status : string
 }
 export type ProfileType = {
     userId: number
@@ -41,6 +48,7 @@ let initialState: ProfilePageType = {
     ],
     newPostText: '',
     profile: null as ProfileType | null,
+    status: '',
 };
 
 export const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageType => {
@@ -64,7 +72,10 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
             };
 
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile}
+            return {...state, profile: action.profile};
+
+        case SET_STATUS:
+            return {...state, status: action.status};
         default:
             return state;
     }
@@ -77,11 +88,7 @@ export const addPostActionCreator = (newPostText: string): AddPostActionType => 
 
 export const setUserProfile = (profile: ProfileType): setUserProfileType => ({type: SET_USER_PROFILE, profile} as const)
 
-export const getUserProfile = (userId: string) => (dispatch:Dispatch<ActionsTypes>) => {
-    usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data));
-    });
-}
+export const setStatus = (status: string): setStatusType =>({type: SET_STATUS, status} as const)
 
 export const onPostChangeActionCreator = (newText: string): UpdateNewPostTextActionType => {
     return {
@@ -89,3 +96,24 @@ export const onPostChangeActionCreator = (newText: string): UpdateNewPostTextAct
         newText: newText
     }
 }
+
+export const getUserProfile = (userId: string) => (dispatch:Dispatch<ActionsTypes>) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data));
+    });
+}
+
+export const getStatus = (userId: string) => (dispatch:Dispatch<ActionsTypes>) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data));
+    });
+}
+
+export const updateStatus = (status: string) => (dispatch:Dispatch<ActionsTypes>) => {
+    profileAPI.updateStatus(status).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
+    });
+}
+
