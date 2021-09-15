@@ -1,6 +1,5 @@
-import {ActionsTypes, DialogPageType, NewMessageBodyType, SendMessageType} from "./storeType";
+import {ActionsTypes, DialogPageType, SendMessageType} from "./storeType";
 
-const NEW_MESSAGE_BODY = 'NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
@@ -12,8 +11,6 @@ let initialState = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
     ],
-
-    newMessageBody: '',
 
     dialogs: [
         {id: 1, name: 'Fedor'},
@@ -28,35 +25,21 @@ let initialState = {
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
-        case NEW_MESSAGE_BODY:
-            return {
-                ...state,
-            newMessageBody: action.body
-            };
-
         case SEND_MESSAGE:
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                newMessageBody: '',
-                messages:[...state.messages,{id: 6, message: body}]
+                messages: [...state.messages, {id: 6, message: body}]
             };
         default:
             return state;
     }
 }
 
-export const updateNewMessageBodyCreator = (body: string): NewMessageBodyType => {
-
-    return {
-        type: NEW_MESSAGE_BODY,
-        body: body
-    }
-}
-
-export const sendMessageCreator = (): SendMessageType => {
+export const sendMessageCreator = (newMessageBody: string): SendMessageType => {
 
     return {
         type: SEND_MESSAGE,
+        newMessageBody
     }
 }

@@ -3,7 +3,6 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/redux-store";
 import {getStatus, getUserProfile, ProfileType, updateStatus} from "../../Redux/profile-reducer";
-import {PostsType} from "../../Redux/storeType";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -11,8 +10,6 @@ import {compose} from "redux";
 
 type MapStatePropsType = {
     profile: ProfileType | null
-    newPostText: string
-    posts: Array<PostsType>
     status: string
 }
 type MapDispatchPropsType = {
@@ -32,7 +29,7 @@ export class ProfileAPIContainer extends React.Component<ProfileAPIContainerType
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = '2';
+            userId = '14454';
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId)
@@ -53,8 +50,6 @@ export class ProfileAPIContainer extends React.Component<ProfileAPIContainerType
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
-        newPostText: state.profilePage.newPostText,
-        posts: state.profilePage.posts,
         status: state.profilePage.status
     }
 }

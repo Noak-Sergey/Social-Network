@@ -7,10 +7,10 @@ import {
     TOGGLE_IS_FETCHING,
     TOGGLE_IS_FOLLOWING_PROGRESS
 } from "./users-reducer";
-import {AddPostActionType, setStatusType, setUserProfileType, UpdateNewPostTextActionType} from "./profile-reducer";
+import {AddPostActionType, setStatusType, setUserProfileType} from "./profile-reducer";
 
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | NewMessageBodyType | SendMessageType |
+export type ActionsTypes = AddPostActionType | NewMessageBodyType | SendMessageType |
     FollowSuccessACType | UnfollowSuccessACType | SetUsersACType | setUserProfileType | setStatusType
 
 export type NewMessageBodyType = {
@@ -19,6 +19,7 @@ export type NewMessageBodyType = {
 }
 export type SendMessageType = {
     type: 'SEND-MESSAGE'
+    newMessageBody:string
 }
 
 export type MessagesType = {
@@ -38,7 +39,6 @@ export type PostsType = {
 export type DialogPageType = {
     messages: MessagesType[]
     dialogs: DialogsType[]
-    newMessageBody: string
 }
 
 export type SidebarType = {}
