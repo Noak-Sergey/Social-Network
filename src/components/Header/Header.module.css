@@ -8,7 +8,8 @@
 }
 .loginBlock{
     float: right;
+    margin-right: 10px;
 }
 .loginBlock a {
-    color: white;
+    color: #7e94b6;
 }

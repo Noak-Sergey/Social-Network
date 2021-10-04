@@ -3,13 +3,21 @@ import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
 import {AuthStateType} from "../../Redux/auth-reducer";
 
-const Header: React.FC<AuthStateType> = (props) => {
+
+interface IProps extends AuthStateType{
+    logout: () => void
+}
+
+const Header: React.FC<IProps> = (props) => {
+
     return <header className={s.header}>
         <img
             src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgPIy0hwSFb9IsEugadxiIDd1Mvp5DYDT2Vw&usqp=CAU'/>
 
         <div className={s.loginBlock}>
-            {props.isAuth ? props.login
+            {props.isAuth
+
+                ? <div>{props.login} <button onClick={props.logout}>Log out</button></div>
                 : <NavLink to={'/login'}>Login</NavLink> }
         </div>
     </header>
