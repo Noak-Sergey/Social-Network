@@ -1,6 +1,7 @@
 import {authAPI} from "../api/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -12,7 +13,7 @@ let initialState = {
 };
 
 export type AuthStateType = {
-    userId: number | null
+    userId: string | null
     email: string | null
     login: string | null
     isAuth: boolean
@@ -35,14 +36,14 @@ export const authReducer = (state: AuthStateType = initialState, action: Actions
 type SetAuthUserDataACType = {
     type: typeof SET_USER_DATA
     payload: {
-        userId: number | null,
+        userId: string | null,
         email: string | null,
         login: string | null,
         isAuth: boolean
     }
 }
 
-const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataACType => {
+const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataACType => {
     return {
         type: SET_USER_DATA,
         payload: {
@@ -67,11 +68,17 @@ export const getAuthUserData = ():ThunkType => (dispatch: ThunkDispatchType) => 
         });
 }
 
-export const login = (email: string, password: string, rememberMe: boolean): ThunkType => (dispatch:ThunkDispatchType) => {
+export const login = (email: string, password: string, rememberMe: boolean): ThunkType =>
+    (dispatch:ThunkDispatchType) => {
+
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
+            } else {
+               let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+                // @ts-ignore
+                dispatch(stopSubmit('login', {_error: message}));
             }
         });
 }

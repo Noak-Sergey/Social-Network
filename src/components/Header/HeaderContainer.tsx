@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from "./Header";
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {AuthStateType, getAuthUserData, logout, ThunkDispatchType} from "../../Redux/auth-reducer";
-import {Dispatch} from "redux";
+import {getAuthUserData, logout} from "../../Redux/auth-reducer";
+
 
 
 type MapStateToPropsType = {
-    userId: number | null
+    userId: string | null
     email: string | null
     login: string | null
     isAuth: boolean

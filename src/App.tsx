@@ -8,31 +8,29 @@ import {ProfileContainer} from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {LoginContainer} from "./components/Login/Login";
 
-type AppType = {
-    //store: StoreType
-    //dispatch: (action: ActionsTypes) => void
-}
+type AppType = {}
 
-const App: React.FC<AppType> = (props) => {
-
-    return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path='/dialogs'
-                           render={() => <DialogsContainer />}/>
-                    <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer />}/>
-                    <Route path='/users'
-                           render={() => <UsersContainer /> } />
-                    <Route path='/login'
-                           render={() => <LoginContainer /> } />
+class App extends React.Component<AppType> {
+    render() {
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    <Navbar/>
+                    <div className='app-wrapper-content'>
+                        <Route path='/dialogs'
+                               render={() => <DialogsContainer/>}/>
+                        <Route path='/profile/:userId?'
+                               render={() => <ProfileContainer/>}/>
+                        <Route path='/users'
+                               render={() => <UsersContainer/>}/>
+                        <Route path='/login'
+                               render={() => <LoginContainer/>}/>
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
