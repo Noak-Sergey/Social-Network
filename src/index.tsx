@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./Redux/redux-store";
-import App from "./App";
 import {Provider} from "react-redux";
+import {App} from "./App";
 
 
 let rerenderEntireTree = () => {

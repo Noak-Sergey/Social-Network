@@ -10,7 +10,6 @@ import {AppStateType} from "../../Redux/redux-store";
 import {UserType} from "../../Redux/storeType";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type UsersAPIComponentProps = {
@@ -81,6 +80,5 @@ let mapStateToProps = (state: AppStateType) => {
 // export const UsersContainer = connect(mapStateToProps,
 //     {followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })(withRedirect)
 export const UsersContainer = compose<React.ComponentType>(
-    connect(mapStateToProps,{followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers }),
-    withAuthRedirect
+    connect(mapStateToProps,{followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })
 )(UsersAPIComponent)
