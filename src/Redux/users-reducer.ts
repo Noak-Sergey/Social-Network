@@ -68,7 +68,8 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
         case TOGGLE_IS_FOLLOWING_PROGRESS:
-            return {...state,
+            return {
+                ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id != action.userId)
@@ -114,7 +115,7 @@ export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingACType =>
         isFetching
     }
 }
-export const toggleIsFollowingInProgress = (followingInProgress: boolean, userId:number): ToggleIsFollowingInProgressACType => {
+export const toggleIsFollowingInProgress = (followingInProgress: boolean, userId: number): ToggleIsFollowingInProgressACType => {
     return {
         type: TOGGLE_IS_FOLLOWING_PROGRESS,
         followingInProgress,
@@ -123,11 +124,12 @@ export const toggleIsFollowingInProgress = (followingInProgress: boolean, userId
 }
 
 
-export const getUsers = (currentPage: number,pageSize: number) => {
-    return (dispatch:Dispatch<ActionsTypes>) => {
+export const requestUsers = (page: number, pageSize: number) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page));
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
@@ -135,7 +137,7 @@ export const getUsers = (currentPage: number,pageSize: number) => {
     }
 }
 
-export const follow = (userId:number) => {
+export const follow = (userId: number) => {
     return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFollowingInProgress(true, userId))
         usersAPI.follow(userId)
@@ -148,7 +150,7 @@ export const follow = (userId:number) => {
     }
 }
 
-export const unfollow = (userId:number) => {
+export const unfollow = (userId: number) => {
     return (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFollowingInProgress(true, userId))
         usersAPI.unfollow(userId)
