@@ -1,4 +1,4 @@
-import React from "react";
+
 import {AppStateType} from "./redux-store";
 
 export const getUsers = (state:AppStateType) => {
