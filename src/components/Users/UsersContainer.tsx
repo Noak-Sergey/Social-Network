@@ -12,12 +12,11 @@ import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
-    getUsers,
     getPageSize,
     getTotalUsersCount,
     getCurrentPage,
     getIsFetching,
-    getFollowingInProgress,
+    getFollowingInProgress, getUsersSuperSelector,
 } from "../../Redux/users-selectors";
 
 type UsersAPIComponentProps = {
@@ -83,7 +82,7 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentProps, U
 // }
 let mapStateToProps = (state: AppStateType) => {
     return {
-        users: getUsers(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
