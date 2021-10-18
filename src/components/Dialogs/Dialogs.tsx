@@ -3,7 +3,6 @@ import c from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogPageType} from "../../Redux/storeType";
-import {Redirect} from "react-router-dom";
 import {AddMessageFormRedux, AddMessageFormType} from "./AddMessageForm/AddMessageForm";
 
 export type DialogsType = {
