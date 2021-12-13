@@ -2,7 +2,7 @@ import React from "react";
 import c from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostsType} from "../../../Redux/storeType";
-import {InjectedFormProps, Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 
@@ -36,11 +36,12 @@ const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormType>> = (props) 
 
 const AddNewPostFormRedux = reduxForm<AddNewPostFormType>({form:'profileAddNewPostForm'})(AddNewPostForm)
 
-const MyPosts: React.FC<MyPostsType> = (props) => {
+const MyPosts = React.memo( (props: MyPostsType) => {
+    console.log('RENDER YO');
 
     let postElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
-    let onAddPost = (values:AddNewPostFormType) => {
+    let onAddPost = (values: AddNewPostFormType) => {
         props.addPost(values.newPostText);
     }
 
@@ -53,6 +54,6 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;

@@ -7,11 +7,11 @@ import {
     TOGGLE_IS_FETCHING,
     TOGGLE_IS_FOLLOWING_PROGRESS
 } from "./users-reducer";
-import {AddPostActionType, setStatusType, setUserProfileType} from "./profile-reducer";
+import {AddPostActionType, deletePostActionType, setStatusType, setUserProfileType} from "./profile-reducer";
 
 
 export type ActionsTypes = AddPostActionType | NewMessageBodyType | SendMessageType |
-    FollowSuccessACType | UnfollowSuccessACType | SetUsersACType | setUserProfileType | setStatusType
+    FollowSuccessACType | UnfollowSuccessACType | SetUsersACType | setUserProfileType | setStatusType | deletePostActionType
 
 export type NewMessageBodyType = {
     type: 'NEW-MESSAGE-BODY'
