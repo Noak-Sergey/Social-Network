@@ -1,10 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followSuccess,
     setCurrentPage,
-    unfollowSuccess,
-    toggleIsFollowingInProgress, requestUsers
+    toggleIsFollowingInProgress, requestUsers, follow, unfollow
 } from "../../Redux/users-reducer";
 import {AppStateType} from "../../Redux/redux-store";
 import {UserType} from "../../Redux/storeType";
@@ -21,8 +19,9 @@ import {
 
 type UsersAPIComponentProps = {
     users: Array<UserType>
-    followSuccess: (id: number) => void
-    unfollowSuccess: (userId: number) => void
+    follow: (id: number) => void
+    unfollow: (userId: number) => void
+    // unfollowSuccess: (userId: number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -62,8 +61,8 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentProps, U
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                   unfollow={this.props.unfollowSuccess}
-                   follow={this.props.followSuccess}
+                   unfollow={this.props.unfollow}
+                   follow={this.props.follow}
                    followingInProgress={this.props.followingInProgress}
                    />
         </>
@@ -97,5 +96,5 @@ let mapStateToProps = (state: AppStateType) => {
 // export const UsersContainer = connect(mapStateToProps,
 //     {followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })(withRedirect)
 export const UsersContainer = compose<React.ComponentType>(
-    connect(mapStateToProps,{followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers: requestUsers })
+    connect(mapStateToProps,{follow, unfollow, setCurrentPage, toggleIsFollowingInProgress, getUsers: requestUsers })
 )(UsersAPIComponent)
