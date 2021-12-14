@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Route, RouteComponentProps} from 'react-router-dom';
+import {Route, RouteComponentProps, withRouter} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {ProfileContainer} from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
-import {LoginContainer} from "./components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import {AppStateType} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {LoginContainer} from "./components/Login/LogIn";
 
 type MapStateToPropsType = {
     initialized: boolean
@@ -37,7 +37,7 @@ class AppContainer extends React.Component<AppType> {
         }
 
         return (
-            <BrowserRouter>
+
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar/>
@@ -52,7 +52,7 @@ class AppContainer extends React.Component<AppType> {
                                render={() => <LoginContainer/>}/>
                     </div>
                 </div>
-            </BrowserRouter>
+
         );
     }
 }
@@ -64,5 +64,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const App = compose<React.ComponentType>(
+export const App = compose<React.ComponentType>(withRouter,
     connect(mapStateToProps, {initializeApp}))(AppContainer);
