@@ -45,12 +45,14 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentProps, U
     }
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const{currentPage, pageSize, getUsers} = this.props
+        getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
-        this.props.setCurrentPage(pageNumber);
+        const{getUsers, pageSize, setCurrentPage} = this.props
+        getUsers(pageNumber, pageSize);
+        setCurrentPage(pageNumber);
     }
 
     render() {
@@ -69,16 +71,6 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentProps, U
     }
 }
 
-// let mapStateToProps = (state: AppStateType) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 let mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsersSuperSelector(state),
@@ -90,11 +82,6 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
-
-// let withRedirect = withAuthRedirect(UsersAPIComponent)
-
-// export const UsersContainer = connect(mapStateToProps,
-//     {followSuccess, unfollowSuccess, setCurrentPage, toggleIsFollowingInProgress, getUsers })(withRedirect)
 export const UsersContainer = compose<React.ComponentType>(
     connect(mapStateToProps,{follow, unfollow, setCurrentPage, toggleIsFollowingInProgress, getUsers: requestUsers })
 )(UsersAPIComponent)
