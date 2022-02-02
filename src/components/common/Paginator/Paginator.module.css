@@ -11,6 +11,6 @@
 .selectedPage {
     font-weight: bold;
     padding: 2px;
-    border: 1px solid gray;
+    border: 1px solid black;
     cursor: pointer;
 }
