@@ -88,7 +88,7 @@ export const AppContainer = compose<React.ComponentType>(withRouter,
 
 
 export const SamuraiJSApp = (props: any) => {
-    return <HashRouter basename={process.env.PUBLIC_URL}>
+    return <HashRouter>
         <Provider store={store}>
             <AppContainer />
         </Provider>
